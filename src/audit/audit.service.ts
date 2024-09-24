@@ -12,10 +12,10 @@ export class AuditService {
   ) {}
 
   async create(dto: CreateAuditDto): Promise<Audit> {
-    return this.repository.create(dto);
+    return this.repository.save(dto);
   }
 
-  findAll(): Promise<Audit[]> {
+  async findAll(): Promise<Audit[]> {
     return this.repository.find();
   }
 }

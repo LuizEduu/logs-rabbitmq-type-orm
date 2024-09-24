@@ -2,12 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AuditService } from './audit.service';
 import { CreateAuditDto } from './dto/create-audit.dto';
 import { Audit } from './entities/audit.entity';
-import {
-  Ctx,
-  MessagePattern,
-  Payload,
-  RmqContext,
-} from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller('audit')
 export class AuditController {
@@ -25,7 +20,7 @@ export class AuditController {
 
   @MessagePattern({ cmd: 'audit' })
   //contexto do rmq serve para executar ações ou comandos para as mensagens recebidas
-  getNotification(@Payload() data: CreateAuditDto, @Ctx() context: RmqContext) {
+  getNotification(@Payload() data: CreateAuditDto) {
     this.auditService.create(data);
   }
 }

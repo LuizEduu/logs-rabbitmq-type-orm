@@ -1,0 +1,37 @@
+GET http://localhost:3000/audit
+###
+
+POST http://localhost:3000/audit
+Content-Type: application/json
+
+{
+    "reference": "streamer",
+    "method": "INSERT",
+    "old": {},
+    "new": {
+        "key": "teste",
+        "name": "Teste",
+        "status": false
+    }
+}
+###
+
+GET http://localhost:3000/streamer
+###
+
+POST http://localhost:3000/streamer
+Content-Type: application/json
+
+{
+    "name": "Tigrão",
+    "age": 65,
+    "status": false
+}
+###
+
+PATCH http://localhost:3000/streamer/fe0a159f-263d-409e-97ff-88f756f2c871
+Content-Type: application/json
+
+{
+    "status": true
+}

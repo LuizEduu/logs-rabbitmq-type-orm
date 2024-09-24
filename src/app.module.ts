@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuditModule } from './audit/audit.module';
+import { QueueModule } from './queue/queue.module';
+import { StreamerModule } from './streamer/streamer.module';
 
 @Module({
   imports: [
@@ -11,10 +13,12 @@ import { AuditModule } from './audit/audit.module';
       username: 'admin',
       password: 'admin',
       database: 'audit',
-      entities: [__dirname + '/**/*.entity{.ts,js}'],
+      entities: ['dist/**/*.entity.js'],
       synchronize: true,
     }),
     AuditModule,
+    QueueModule,
+    StreamerModule,
   ],
   controllers: [],
   providers: [],
